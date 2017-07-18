@@ -1,9 +1,21 @@
+
+
+<div *ngIf="appState == 'default'">
+  <h3>Agregar TODO</h3>
+  <form (submit)="addTodo()">
+    <input class="form-control" type="text" [(ngModel)]="text" name="todo">
+  </form>
+</div>
+
+<div *ngIf="appState == 'edit'">
+  <h3>Editar TODO</h3>
+  <form (submit)="updateTodo()">
+    <input class="form-control" type="text" [(ngModel)]="text" name="todo">
+  </form>
+</div>
 <h3>Todo List</h3>
-<form (submit)="addTodo()">
-  <input type="text" [(ngModel)]="text" name="todo">
-</form>
-<ul>
-  <li *ngFor="let todo of todos">
-    {{todo.text}}
+<ul class="list-group">
+  <li *ngFor="let todo of todos" class="list-group-item">
+    <span (click)="editTodo(todo)">{{todo.text}}</span> <button class="btn-danger btn-tiny" (click)="deleteTodo(todo.text)">X</button>
   </li>
 </ul>
